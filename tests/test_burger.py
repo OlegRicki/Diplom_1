@@ -29,54 +29,22 @@ class TestBurger:
         burger.add_ingredient(cutlet_mock)
         assert burger.get_price() == (price_bun * 2 + price_sauce + price_cutlet)
 
-    def test_create_burger_check_get_receipt(self):
+    def test_create_burger_check_get_receipt(self, bun_mock, sauce_mock, cutlet_mock):
         burger = Burger()
-        bun_mock = Mock()
-
-        bun_mock.get_price.return_value = 100
-        bun_mock.get_name.return_value = 'black bun'
-
-        sauce_mock = Mock()
-        sauce_mock.get_price.return_value = 100
-        sauce_mock.get_name.return_value = 'hot sauce'
-        sauce_mock.get_type.return_value = INGREDIENT_TYPE_SAUCE
-
-        cutlet_mock = Mock()
-        cutlet_mock.get_price.return_value = 100
-        cutlet_mock.get_name.return_value = 'cutlet'
-        cutlet_mock.get_type.return_value = INGREDIENT_TYPE_SAUCE
 
         burger.set_buns(bun=bun_mock)
         burger.add_ingredient(sauce_mock)
         burger.add_ingredient(cutlet_mock)
         assert burger.get_receipt() == ('(==== black bun ====)\n'
                                         '= sauce hot sauce =\n'
-                                        '= sauce cutlet =\n'
+                                        '= filling cutlet =\n'
                                         '(==== black bun ====)\n'
                                         '\n'
                                         'Price: 400')
 
-    def test_create_burger_check_move_ingredient(self):
+    def test_create_burger_check_move_ingredient(self, bun_mock, sauce_mock, cutlet_mock, chill_mock):
         burger = Burger()
-        bun_mock = Mock()
 
-        bun_mock.get_price.return_value = 100
-        bun_mock.get_name.return_value = 'black bun'
-
-        sauce_mock = Mock()
-        sauce_mock.get_price.return_value = 100
-        sauce_mock.get_name.return_value = 'hot sauce'
-        sauce_mock.get_type.return_value = INGREDIENT_TYPE_SAUCE
-
-        cutlet_mock = Mock()
-        cutlet_mock.get_price.return_value = 100
-        cutlet_mock.get_name.return_value = 'cutlet'
-        cutlet_mock.get_type.return_value = INGREDIENT_TYPE_FILLING
-
-        chill_mock = Mock()
-        chill_mock.get_price.return_value = 100
-        chill_mock.get_name.return_value = 'chili sauce'
-        chill_mock.get_type.return_value = INGREDIENT_TYPE_SAUCE
 
         burger.set_buns(bun=bun_mock)
         burger.add_ingredient(sauce_mock)
@@ -92,27 +60,9 @@ class TestBurger:
                                         '\n'
                                         'Price: 500')
 
-    def test_create_burger_remove_ingredient(self):
+    def test_create_burger_remove_ingredient(self,  bun_mock, sauce_mock, cutlet_mock, chill_mock):
         burger = Burger()
-        bun_mock = Mock()
 
-        bun_mock.get_price.return_value = 100
-        bun_mock.get_name.return_value = 'black bun'
-
-        sauce_mock = Mock()
-        sauce_mock.get_price.return_value = 100
-        sauce_mock.get_name.return_value = 'hot sauce'
-        sauce_mock.get_type.return_value = INGREDIENT_TYPE_SAUCE
-
-        cutlet_mock = Mock()
-        cutlet_mock.get_price.return_value = 100
-        cutlet_mock.get_name.return_value = 'cutlet'
-        cutlet_mock.get_type.return_value = INGREDIENT_TYPE_FILLING
-
-        chill_mock = Mock()
-        chill_mock.get_price.return_value = 100
-        chill_mock.get_name.return_value = 'chili sauce'
-        chill_mock.get_type.return_value = INGREDIENT_TYPE_SAUCE
 
         burger.set_buns(bun=bun_mock)
         burger.add_ingredient(sauce_mock)
